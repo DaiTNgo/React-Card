@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 import products from './products';
-
-const appReducers = combineReducers({ products });
+import cart from './cart';
+const appReducers = combineReducers({ products, cart });
 export default appReducers;
