@@ -2,7 +2,8 @@ import React from 'react';
 
 class Product extends React.Component {
 	render() {
-		const { image, des, name, price } = this.props;
+		const { image, des, name, price } = this.props.product;
+		const { onAddToCart } = this.props;
 
 		return (
 			<div className='card text-center card-cascade narrower'>
@@ -31,7 +32,8 @@ class Product extends React.Component {
 								className='btn-floating blue-gradient'
 								data-toggle='tooltip'
 								data-placement='top'
-								data-original-title='Add to Cart'>
+								data-original-title='Add to Cart'
+								onClick={onAddToCart.bind(this, this.props.product, 1)}>
 								<i className='fa fa-shopping-cart' />
 							</button>
 						</span>

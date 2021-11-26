@@ -1,6 +1,4 @@
 import React from 'react';
-import CartResult from './CartResult';
-
 class App extends React.Component {
 	render() {
 		return (
@@ -19,10 +17,7 @@ class App extends React.Component {
 										<th />
 									</tr>
 								</thead>
-								<tbody>
-									{this.props.children}
-									<CartResult />
-								</tbody>
+								<tbody>{this.props.children}</tbody>
 							</table>
 						</div>
 					</section>

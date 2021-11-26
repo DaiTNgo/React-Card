@@ -21,6 +21,7 @@ const initialState = data
 const cart = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_TO_CART:
+			console.log(action);
 			break;
 
 		default:

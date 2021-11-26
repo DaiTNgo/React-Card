@@ -30,7 +30,7 @@ class CartItem extends React.Component {
 						</label>
 					</div>
 				</td>
-				<td>{this.totalPrice(price * quantity)}$</td>
+				<td>{this.totalPrice(price, quantity)}$</td>
 				<td>
 					<button
 						type='button'
