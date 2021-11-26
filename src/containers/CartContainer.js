@@ -5,6 +5,11 @@ import Cart from '../components/Cart';
 import CartItem from '../components/CartItem';
 import CartResult from '../components/CartResult';
 import { MSG_CART_EMPTY } from '../constants/Messages';
+import {
+	actDeleteProduct,
+	actChangeMessage,
+	actUpdateQuantity,
+} from '../actions';
 class CartContainer extends React.Component {
 	render() {
 		const { cart } = this.props;
@@ -16,8 +21,15 @@ class CartContainer extends React.Component {
 		);
 	}
 	showCartItem(cart) {
+		const { onDeleteProduct, onChangeMessage, onUpdateQuantity } = this.props;
 		return cart.map((cartItem, index) => (
-			<CartItem key={index} {...cartItem} />
+			<CartItem
+				key={index}
+				{...cartItem}
+				onDeleteProduct={onDeleteProduct}
+				onChangeMessage={onChangeMessage}
+				onUpdateQuantity={onUpdateQuantity}
+			/>
 		));
 	}
 	calculateTotalPrice(cart) {
@@ -32,17 +44,19 @@ class CartContainer extends React.Component {
 }
 
 CartContainer.propTypes = {
-	cart: PropTypes.arrayOf({
-		product: PropTypes.shape({
-			id: PropTypes.number.isRequired,
-			name: PropTypes.string.isRequired,
-			image: PropTypes.string.isRequired,
-			des: PropTypes.string.isRequired,
-			price: PropTypes.number.isRequired,
-			inventory: PropTypes.number.isRequired,
-		}).isRequired,
-		quantity: PropTypes.number.isRequired,
-	}).isRequired,
+	cart: PropTypes.arrayOf(
+		PropTypes.shape({
+			product: PropTypes.shape({
+				id: PropTypes.number.isRequired,
+				name: PropTypes.string.isRequired,
+				image: PropTypes.string.isRequired,
+				des: PropTypes.string.isRequired,
+				price: PropTypes.number.isRequired,
+				inventory: PropTypes.number.isRequired,
+			}),
+			quantity: PropTypes.number.isRequired,
+		})
+	).isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -50,5 +64,18 @@ const mapStateToProps = (state) => {
 		cart: state.cart,
 	};
 };
+const mapDispatchToProps = (dispatch, props) => {
+	return {
+		onDeleteProduct: (productID) => {
+			dispatch(actDeleteProduct(productID));
+		},
+		onChangeMessage: (message) => {
+			dispatch(actChangeMessage(message));
+		},
+		onUpdateQuantity: (productID, quantity) => {
+			dispatch(actUpdateQuantity(productID, quantity));
+		},
+	};
+};
 
-export default connect(mapStateToProps, null)(CartContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

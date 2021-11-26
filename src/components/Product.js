@@ -33,7 +33,7 @@ class Product extends React.Component {
 								data-toggle='tooltip'
 								data-placement='top'
 								data-original-title='Add to Cart'
-								onClick={this.onAddToCart.bind(this, product)}>
+								onClick={this.addToCart.bind(this, product)}>
 								<i className='fa fa-shopping-cart' />
 							</button>
 						</span>
@@ -42,7 +42,7 @@ class Product extends React.Component {
 			</div>
 		);
 	}
-	onAddToCart(product) {
+	addToCart(product) {
 		this.props.onChangeMessage(MSG_ADD_TO_CART_SUCCESS);
 		this.props.onAddToCart(product);
 	}

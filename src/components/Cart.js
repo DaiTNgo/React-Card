@@ -1,4 +1,5 @@
 import React from 'react';
+import { MSG_CART_EMPTY } from '../constants/Messages';
 class App extends React.Component {
 	render() {
 		return (
@@ -17,7 +18,15 @@ class App extends React.Component {
 										<th />
 									</tr>
 								</thead>
-								<tbody>{this.props.children}</tbody>
+								<tbody>
+									{this.props.children[0].length ? (
+										this.props.children
+									) : (
+										<tr>
+											<td>{MSG_CART_EMPTY}</td>
+										</tr>
+									)}
+								</tbody>
 							</table>
 						</div>
 					</section>

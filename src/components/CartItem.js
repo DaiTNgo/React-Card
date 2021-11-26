@@ -1,8 +1,11 @@
 import React from 'react';
-
+import {
+	MSG_DELETE_PRODUCT_IN_CART_SUCCESS,
+	MSG_UPDATE_CART_SUCCESS,
+} from '../constants/Messages';
 class CartItem extends React.Component {
 	render() {
-		const { image, name, price } = this.props.product;
+		const { image, name, price, id } = this.props.product;
 		const { quantity } = this.props;
 		return (
 			<tr>
@@ -21,12 +24,18 @@ class CartItem extends React.Component {
 						<label
 							className='btn btn-sm btn-primary
                                               btn-rounded waves-effect waves-light'>
-							<button>—</button>
+							<button
+								onClick={this.updateQuantity.bind(this, id, quantity - 1)}>
+								—
+							</button>
 						</label>
 						<label
 							className='btn btn-sm btn-primary
                                               btn-rounded waves-effect waves-light'>
-							<button>+</button>
+							<button
+								onClick={this.updateQuantity.bind(this, id, quantity + 1)}>
+								+
+							</button>
 						</label>
 					</div>
 				</td>
@@ -37,7 +46,8 @@ class CartItem extends React.Component {
 						className='btn btn-sm btn-primary waves-effect waves-light'
 						data-toggle='tooltip'
 						data-placement='top'
-						data-original-title='Remove item'>
+						data-original-title='Remove item'
+						onClick={this.deleteProduct.bind(this, id)}>
 						X
 					</button>
 				</td>
@@ -46,6 +56,17 @@ class CartItem extends React.Component {
 	}
 	totalPrice(price, quantity) {
 		return price * quantity;
+	}
+	deleteProduct(productID) {
+		this.props.onChangeMessage(MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
+		this.props.onDeleteProduct(productID);
+	}
+	updateQuantity(id, quantity) {
+		if (quantity <= 0) {
+			quantity = 1;
+		}
+		this.props.onChangeMessage(MSG_UPDATE_CART_SUCCESS);
+		this.props.onUpdateQuantity(id, quantity);
 	}
 }
 
