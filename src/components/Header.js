@@ -10,7 +10,7 @@ class Header extends React.Component {
 					data-ps-id='c27390a3-9efc-e0d8-197a-ab96d73a156a'>
 					<li>
 						<div className='logo-wrapper waves-light waves-effect waves-light'>
-							<button href>
+							<button>
 								<img
 									src='http://mdbootstrap.com/img/logo/mdb-transparent.png'
 									alt=''
@@ -22,22 +22,22 @@ class Header extends React.Component {
 					<li>
 						<ul className='social'>
 							<li>
-								<button className='icons-sm fb-ic' href>
+								<button className='icons-sm fb-ic'>
 									<i className='fa fa-facebook'> </i>
 								</button>
 							</li>
 							<li>
-								<button className='icons-sm pin-ic' href>
+								<button className='icons-sm pin-ic'>
 									<i className='fa fa-pinterest'> </i>
 								</button>
 							</li>
 							<li>
-								<button className='icons-sm gplus-ic' href>
+								<button className='icons-sm gplus-ic'>
 									<i className='fa fa-google-plus'> </i>
 								</button>
 							</li>
 							<li>
-								<button className='icons-sm tw-ic' href>
+								<button className='icons-sm tw-ic'>
 									<i className='fa fa-twitter'> </i>
 								</button>
 							</li>
@@ -57,9 +57,7 @@ class Header extends React.Component {
 					<li>
 						<ul className='collapsible collapsible-accordion'>
 							<li>
-								<button
-									className='collapsible-header waves-effect arrow-r'
-									href>
+								<button className='collapsible-header waves-effect arrow-r'>
 									<i className='fa fa-shopping-bag' /> Product Page
 									<i className='fa fa-angle-down rotate-icon' />
 								</button>
@@ -86,9 +84,7 @@ class Header extends React.Component {
 								</div>
 							</li>
 							<li className='active'>
-								<button
-									className='collapsible-header waves-effect arrow-r active'
-									href>
+								<button className='collapsible-header waves-effect arrow-r active'>
 									<i className='fa fa-shopping-cart' /> Cart Pages
 									<i className='fa fa-angle-down rotate-icon' />
 								</button>
@@ -128,9 +124,7 @@ class Header extends React.Component {
 								</div>
 							</li>
 							<li>
-								<button
-									className='collapsible-header waves-effect arrow-r'
-									href>
+								<button className='collapsible-header waves-effect arrow-r'>
 									<i className='fa fa-dashboard' /> Homepages
 									<i className='fa fa-angle-down rotate-icon' />
 								</button>

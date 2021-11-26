@@ -1,28 +1,18 @@
 import { ADD_TO_CART } from '../constants/ActionTypes';
 const data = JSON.parse(localStorage.getItem('CART'));
 
-const initialState = data
-	? data
-	: [
-			{
-				product: {
-					id: 1,
-					name: 'Iphone 12',
-					image:
-						'https://shop.jtglobal.com/wp-content/uploads/2020/10/iphone-12-blue.jpg',
-					des: 'Apple sản xuất',
-					price: 400,
-					inventory: 12,
-				},
-				quantity: 5,
-			},
-	  ];
+const initialState = data ? data : [];
 
 const cart = (state = initialState, action) => {
+	const { payload, quantity } = action;
+
 	switch (action.type) {
 		case ADD_TO_CART:
-			console.log(action);
-			break;
+			const index = state.findIndex(({ product }) => product.id === payload.id);
+			if (index === -1) state.push({ product: payload, quantity });
+			else state[index].quantity += quantity;
+			localStorage.setItem('CART', JSON.stringify(state));
+			return [...state];
 
 		default:
 			break;

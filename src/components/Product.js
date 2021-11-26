@@ -1,9 +1,9 @@
 import React from 'react';
-
+import { MSG_ADD_TO_CART_SUCCESS } from '../constants/Messages';
 class Product extends React.Component {
 	render() {
-		const { image, des, name, price } = this.props.product;
-		const { onAddToCart } = this.props;
+		const { product } = this.props;
+		const { image, des, name, price } = product;
 
 		return (
 			<div className='card text-center card-cascade narrower'>
@@ -33,7 +33,7 @@ class Product extends React.Component {
 								data-toggle='tooltip'
 								data-placement='top'
 								data-original-title='Add to Cart'
-								onClick={onAddToCart.bind(this, this.props.product, 1)}>
+								onClick={this.onAddToCart.bind(this, product)}>
 								<i className='fa fa-shopping-cart' />
 							</button>
 						</span>
@@ -41,6 +41,10 @@ class Product extends React.Component {
 				</div>
 			</div>
 		);
+	}
+	onAddToCart(product) {
+		this.props.onChangeMessage(MSG_ADD_TO_CART_SUCCESS);
+		this.props.onAddToCart(product);
 	}
 }
 

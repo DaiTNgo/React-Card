@@ -3,17 +3,22 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Products from '../components/Products';
 import Product from '../components/Product';
-import { actAddToCart } from '../actions';
+import { actAddToCart, actChangeMessage } from '../actions';
+
 class ProductsContainer extends React.Component {
 	render() {
 		const { products } = this.props;
 		return <Products>{this.showProducts(products)}</Products>;
 	}
 	showProducts(products) {
-		const { onAddToCart } = this.props;
+		const { onAddToCart, onChangeMessage } = this.props;
 		return products.map((product) => (
 			<div className='col-lg-4 col-md-6 mb-r' key={product.id}>
-				<Product product={product} onAddToCart={onAddToCart} />
+				<Product
+					product={product}
+					onAddToCart={onAddToCart}
+					onChangeMessage={onChangeMessage}
+				/>
 			</div>
 		));
 	}
@@ -30,6 +35,8 @@ ProductsContainer.propTypes = {
 			inventory: PropTypes.number.isRequired,
 		})
 	).isRequired,
+	onChangeMessage: PropTypes.func.isRequired,
+	onAddToCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -40,8 +47,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
 	return {
-		onAddToCart(product, quantity) {
-			return dispatch(actAddToCart(product, quantity));
+		onAddToCart: (product) => {
+			const QUANTITY = 1;
+			dispatch(actAddToCart(product, QUANTITY));
+		},
+		onChangeMessage: (message) => {
+			dispatch(actChangeMessage(message));
 		},
 	};
 };

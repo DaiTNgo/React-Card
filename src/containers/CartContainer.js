@@ -4,16 +4,12 @@ import PropTypes from 'prop-types';
 import Cart from '../components/Cart';
 import CartItem from '../components/CartItem';
 import CartResult from '../components/CartResult';
-import {
-	MSG_WELCOME,
-	MSG_ADD_TO_CART_SUCCESS,
-	MSG_CART_EMPTY,
-} from '../constants/Messages';
+import { MSG_CART_EMPTY } from '../constants/Messages';
 class CartContainer extends React.Component {
 	render() {
 		const { cart } = this.props;
 		return (
-			<Cart>
+			<Cart message={cart.length === 0 ? MSG_CART_EMPTY : ''}>
 				{this.showCartItem(cart)}
 				{this.calculateTotalPrice(cart)}
 			</Cart>

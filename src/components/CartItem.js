@@ -21,12 +21,12 @@ class CartItem extends React.Component {
 						<label
 							className='btn btn-sm btn-primary
                                               btn-rounded waves-effect waves-light'>
-							<a href>—</a>
+							<button>—</button>
 						</label>
 						<label
 							className='btn btn-sm btn-primary
                                               btn-rounded waves-effect waves-light'>
-							<a href>+</a>
+							<button>+</button>
 						</label>
 					</div>
 				</td>
@@ -37,7 +37,6 @@ class CartItem extends React.Component {
 						className='btn btn-sm btn-primary waves-effect waves-light'
 						data-toggle='tooltip'
 						data-placement='top'
-						title
 						data-original-title='Remove item'>
 						X
 					</button>
